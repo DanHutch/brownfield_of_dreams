@@ -11,6 +11,7 @@ class UserDashboardFacade
 	def conn
 		Faraday.new(url: "https://api.github.com") do |faraday|
 				faraday.headers["Authorization"] = ENV['GITHUB_KEY']
+
 				faraday.adapter Faraday.default_adapter
 			end
 	end
