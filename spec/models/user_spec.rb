@@ -21,5 +21,12 @@ RSpec.describe User, type: :model do
       expect(admin.role).to eq('admin')
       expect(admin.admin?).to be_truthy
     end
+
+    it 'can be store a users github api key' do
+      norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', role: 0)
+      normapi = Apikey.create(user_id: norm.id, host: 0, key: "token 534e41060850a8305ff5a92147a8c7a32fe0cb61")
+      expect(norm.github_key).to eq(normapi[:key])
+    end
+
   end
 end

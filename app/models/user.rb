@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates_presence_of :first_name
   enum role: [:default, :admin]
   has_secure_password
+
+  def github_key
+    Apikey.find_by(user_id: self.id).key
+  end
 end
