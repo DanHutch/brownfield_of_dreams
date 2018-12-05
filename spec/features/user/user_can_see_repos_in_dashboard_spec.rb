@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User' do
 	it 'user sees repos in dashboard' do
-		
+		stub_repo_api_calls
 
     user = create(:user)
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -23,9 +23,4 @@ describe 'User' do
 		end
 	end
 end
-
-# As a logged in user
-# When I visit /dashboard
-# Then I should see a section for "Github"
-# And under that section I should see a list of 5 repositories with the name of each Repo linking to the repo on Github
 	
