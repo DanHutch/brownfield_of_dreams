@@ -5,6 +5,7 @@ describe 'User' do
 		stub_repo_api_calls
 
     user = create(:user)
+    # user = User.create!(name: "norm") so we can use my github key
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
 		visit dashboard_path
@@ -12,7 +13,7 @@ describe 'User' do
     expect(page).to have_content(user.email)
     expect(page).to have_content(user.first_name)
 		expect(page).to have_content(user.last_name)
-		
+
 		expect(page).to have_content("Github")
 		expect(page).to have_css(".github")
 		expect(page).to have_css(".repo", count: 5)
@@ -22,5 +23,5 @@ describe 'User' do
 			expect(page).to have_content("2win_playlist")
 		end
 	end
+
 end
-	
