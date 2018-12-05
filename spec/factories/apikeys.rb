@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :apikey do
     user_id 1
-    host 1
-    key "MyString"
+    host 0
+    key ENV["GITHUB_KEY"]
+    association :user, factory: :user
   end
 end

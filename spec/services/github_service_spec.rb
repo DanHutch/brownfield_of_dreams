@@ -3,9 +3,10 @@ require 'rails_helper'
 describe GithubService do
 
 	it "exists" do
+		key = create(:apikey)
 		VCR.use_cassette("github_service_spec") do
 
-			service = GithubService.new
+			service = GithubService.new(key.user)
 
 			expect(service).to be_a(GithubService)
 		end
@@ -14,10 +15,10 @@ describe GithubService do
 	context "instance methods" do
 		
     context "#get_repos" do
-      it "returns a hash" do
+			it "returns a hash" do
+				key = create(:apikey)
 				VCR.use_cassette("github_service_spec") do
-       
-          service = GithubService.new
+					service = GithubService.new(key.user)
 
 					expect(service.get_repos).to be_a(Array)
           expect(service.get_repos[0]).to have_key(:name)

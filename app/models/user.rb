@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_secure_password
 
   def github_key
-    Apikey.find_by(user_id: self.id, host: "github").key
+    found = Apikey.find_by(user_id: self.id, host: "github")
+    found.key if found
   end
 end

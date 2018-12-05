@@ -1,6 +1,7 @@
 class UserDashboardFacade
 
-	def initialize
+	def initialize(user)
+		@user = user
 		@_repo_results = nil
 	end
 
@@ -17,7 +18,7 @@ class UserDashboardFacade
 	end
 
 	def service
-		GithubService.new
+		GithubService.new(@user)
 	end	
 
 end

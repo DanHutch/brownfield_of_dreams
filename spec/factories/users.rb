@@ -5,7 +5,6 @@ FactoryBot.define do
     last_name { Faker::Artist.name }
     password { Faker::Color.color_name }
     role { :default }
-    association :apikey, factory: :apikey
   end
 
   factory :admin, parent: :user do
