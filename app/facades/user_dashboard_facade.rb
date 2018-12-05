@@ -6,8 +6,10 @@ class UserDashboardFacade
 	end
 
 	def repos
-		repo_results[0..4].map do |repo_data|
-			Repo.new(repo_data)
+		if @user.github_key != nil
+			repo_results[0..4].map do |repo_data|
+				Repo.new(repo_data)
+			end
 		end
 	end
 
@@ -19,6 +21,6 @@ class UserDashboardFacade
 
 	def service
 		GithubService.new(@user)
-	end	
+	end
 
 end

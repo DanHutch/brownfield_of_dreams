@@ -23,17 +23,18 @@ describe 'User' do
 		end
 	end
 
-	it "only shows facade if user has API key" do
+	it "only shows github section if user has API key" do
 		stub_repo_api_calls
-		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', role: 0)
+		# norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', role: 0)
 		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', role: 0)
-		normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")
-			
+		# normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")
+
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(otherguy)
 
 		visit dashboard_path
+		expect(page).to have_content(otherguy.first_name)
 
-		expect(page).to_not have_css(".github")			
+		expect(page).to_not have_css(".github")
 	end
 
 end
