@@ -1,26 +1,23 @@
 class UserDashboardFacade
 
+	def initialize
+		@_repo_results = nil
+	end
+
 	def repos
-		get_json[0..4].map do |repo_hash|
-			Repo.new(repo_hash)
+		repo_results[0..4].map do |repo_data|
+			Repo.new(repo_data)
 		end
 	end
 
 	private
 
-	def conn
-		Faraday.new(url: "https://api.github.com") do |faraday|
-				faraday.headers["Authorization"] = ENV['GITHUB_KEY']
-
-				faraday.adapter Faraday.default_adapter
-			end
+	def repo_results
+		@_repo_results ||= service.get_repos
 	end
 
-	def get_json
-		@response ||= conn.get("/user/repos")
-		
-		@parsed ||= JSON.parse(@response.body, symbolize_names: true)
-	end
-
+	def service
+		GithubService.new
+	end	
 
 end

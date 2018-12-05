@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-describe 'User dashboard' do
-	it 'shows repos in dashboard' do
+describe 'User' do
+	it 'user sees repos in dashboard' do
+		stub_repo_api_calls
 
     user = create(:user)
     # user = User.create!(name: "norm") so we can use my github key
@@ -24,8 +25,3 @@ describe 'User dashboard' do
 	end
 
 end
-
-# As a logged in user
-# When I visit /dashboard
-# Then I should see a section for "Github"
-# And under that section I should see a list of 5 repositories with the name of each Repo linking to the repo on Github

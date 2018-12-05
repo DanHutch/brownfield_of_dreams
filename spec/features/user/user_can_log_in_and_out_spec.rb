@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 describe 'User' do
+  
+  before(:each) do
+    stub_repo_api_calls
+  end
+  
   it 'user can sign in' do
+
     user = create(:user)
 
     visit '/'
