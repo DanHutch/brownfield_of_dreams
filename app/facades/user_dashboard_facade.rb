@@ -38,6 +38,14 @@ class UserDashboardFacade
 		end
 	end
 
+	def followings
+		if @user.github_key != nil
+			following_results.map do |following_data|
+				GithubUser.new(following_data)
+			end
+		end
+	end
+
 	private
 
 	def repo_results
@@ -46,6 +54,10 @@ class UserDashboardFacade
 
 	def follower_results
 		@_follower_results ||= service.get_followers
+	end
+
+	def following_results
+		@_following_results ||= service.get_followings
 	end
 
 	def service

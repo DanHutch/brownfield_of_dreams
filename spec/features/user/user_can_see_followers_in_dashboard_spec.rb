@@ -4,6 +4,8 @@ describe 'Github section' do
 	it 'shows your followers in the dashboard' do
 		stub_repo_api_calls
 		stub_follower_api_calls
+		stub_following_api_calls
+
 		key = create(:apikey)
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(key.user)
 
@@ -20,7 +22,9 @@ describe 'Github section' do
 
 	it 'shows who youre following in the dashboard' do
 		stub_repo_api_calls
+		stub_follower_api_calls
 		stub_following_api_calls
+
 		key = create(:apikey)
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(key.user)
 
@@ -37,6 +41,9 @@ describe 'Github section' do
 
 	xit "only shows github section if user has API key" do
 		stub_repo_api_calls
+		stub_follower_api_calls
+		stub_following_api_calls
+
 		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', role: 0)
 		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', role: 0)
 		normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")

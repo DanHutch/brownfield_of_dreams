@@ -25,10 +25,20 @@
       <% end %>
       <% if @facade.followers != nil %>
         <section class="followers">
-          <h1>Followers</h1>
+          <h1>Your Followers</h1>
             <% @facade.followers.each do |follower| %>
               <div class="follower">
                 <div class="follower-name"><%= link_to follower.name, follower.url%></div>
+              </div>
+            <%end%>
+        </section>
+      <% end %>
+      <% if @facade.followings != nil %>
+        <section class="followings">
+          <h1>Following These Users</h1>
+            <% @facade.followings.each do |following| %>
+              <div class="following">
+                <div class="following-name"><%= link_to following.name, following.url%></div>
               </div>
             <%end%>
         </section>
