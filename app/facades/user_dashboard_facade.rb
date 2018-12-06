@@ -6,6 +6,22 @@ class UserDashboardFacade
 		@_follower_results = nil
 	end
 
+	def user
+		@user
+	end
+
+	def user_firstname
+		@user.first_name
+	end
+
+	def user_name		
+		@user.first_name + " " +  @user.last_name
+	end
+
+	def user_email
+		@user.email
+	end
+
 	def repos
 		if @user.github_key != nil
 			repo_results[0..4].map do |repo_data|

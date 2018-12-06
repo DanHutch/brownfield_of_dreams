@@ -18,10 +18,11 @@ describe 'User followers' do
 		end
 	end
 
-	xit "only shows github section if user has API key" do
+	it "only shows github section if user has API key" do
 		stub_repo_api_calls
-		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', role: 0)
-		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', role: 0)
+		stub_follower_api_calls
+		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', last_name: "McNorm", role: 0)
+		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', last_name: "McDude", role: 0)
 		normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")
 
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(otherguy)
