@@ -14,7 +14,7 @@ class UserDashboardFacade
 		@user.first_name
 	end
 
-	def user_name		
+	def user_name
 		@user.first_name + " " +  @user.last_name
 	end
 
@@ -33,7 +33,7 @@ class UserDashboardFacade
 	def followers
 		if @user.github_key != nil
 			follower_results.map do |follower_data|
-				Follower.new(follower_data)
+				GithubUser.new(follower_data)
 			end
 		end
 	end

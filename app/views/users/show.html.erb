@@ -12,10 +12,10 @@
   </section>
   <%if @facade.user.github_key != nil %>
     <section class="github">
-      <h1>Github</h1>
+      <h2>Github</h2>
       <% if @facade.repos != nil %>
         <section class="repos">
-          <h2>Repos</h2>
+          <h1>Repos</h1>
             <% @facade.repos.each do |repo| %>
               <div class="repo">
                 <div class="repo-name"><%= link_to repo.name, repo.url%></div>
@@ -25,7 +25,7 @@
       <% end %>
       <% if @facade.followers != nil %>
         <section class="followers">
-          <h2>Followers</h2>
+          <h1>Followers</h1>
             <% @facade.followers.each do |follower| %>
               <div class="follower">
                 <div class="follower-name"><%= link_to follower.name, follower.url%></div>

@@ -61,3 +61,8 @@ def stub_follower_api_calls
   stub_request(:get, "https://api.github.com/user/followers").
       to_return(body: File.read("./spec/fixtures/sample_user_followers_response.json"))
 end
+
+def stub_following_api_calls
+  stub_request(:get, "https://api.github.com/user/followers").
+      to_return(body: File.read("./spec/fixtures/sample_user_followers_response.json"))
+end
