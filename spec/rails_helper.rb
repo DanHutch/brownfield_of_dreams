@@ -66,3 +66,9 @@ def stub_following_api_calls
   stub_request(:get, "https://api.github.com/user/following").
       to_return(body: File.read("./spec/fixtures/sample_user_following_response.json"))
 end
+
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({"provider" => "github","credentials" => {"token" => "54321"}})
+end

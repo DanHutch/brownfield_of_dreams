@@ -45,6 +45,8 @@
       <% end %>
     </section>
   <%else %>
-    <%=link_to "Connect on GitHub", connect_path%>
+    <div class="github-button">
+      <%=button_to "Connect on GitHub", '/auth/github', method: 'get', class: "btn btn-primary mb1 bg-teal"%>
+    </div>
   <%end%>
 </section>
