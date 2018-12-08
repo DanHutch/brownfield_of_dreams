@@ -10,10 +10,6 @@ class UserDashboardFacade
 		@user.github_key
 	end
 
-	def user
-		@user
-	end
-
 	def user_firstname
 		@user.first_name
 	end
