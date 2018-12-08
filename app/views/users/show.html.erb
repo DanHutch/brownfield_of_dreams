@@ -10,7 +10,7 @@
   <section>
     <h1>Bookmarked Segments</h1>
   </section>
-  <%if @facade.user.github_key != nil %>
+  <%if @facade.github_key != nil %>
     <section class="github">
       <h2>Github</h2>
       <% if @facade.repos != nil %>
@@ -44,5 +44,7 @@
         </section>
       <% end %>
     </section>
+  <%else %>
+    <%=link_to "Connect on GitHub", connect_path%>
   <%end%>
 </section>

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
+  get 'connect', to: redirect('/auth/github'), as: 'connect'
+  get 'auth/:provider/callback', to: 'apikeys#create'
+  get 'auth/failure', to: redirect('/')
+
   get 'tags/:tag', to: 'welcome#index', as: :tag
   get '/register', to: 'users#new'
 
