@@ -14,6 +14,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'webpacker', '~> 3.5'
 
+gem 'omniauth-github'#, github: 'intridea/omniauth-github'
 gem 'yt', '~> 0.29.1'
 gem 'google-api-client'
 gem 'faraday'

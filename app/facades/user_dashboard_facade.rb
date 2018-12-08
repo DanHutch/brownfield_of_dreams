@@ -6,6 +6,10 @@ class UserDashboardFacade
 		@_follower_results = nil
 	end
 
+	def github_key
+		@user.github_key
+	end
+
 	def user
 		@user
 	end
