@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-describe 'User followers' do
-	it 'shown in dashboard' do
+describe 'Github section' do
+	it 'shows your followers in the dashboard' do
 		stub_repo_api_calls
 		stub_follower_api_calls
+		stub_following_api_calls
+
 		key = create(:apikey)
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(key.user)
 
@@ -18,11 +20,32 @@ describe 'User followers' do
 		end
 	end
 
-	it "only shows github section if user has API key" do
+	it 'shows who youre following in the dashboard' do
 		stub_repo_api_calls
 		stub_follower_api_calls
-		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', last_name: "McNorm", role: 0)
-		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', last_name: "McDude", role: 0)
+		stub_following_api_calls
+
+		key = create(:apikey)
+		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(key.user)
+
+		visit dashboard_path
+
+		expect(page).to have_content("Following")
+		expect(page).to have_css(".following", count: 6)
+
+		within(".followings") do
+			expect(page).to have_css(".following-name", count:6)
+			expect(page).to have_link(count: 6)
+		end
+	end
+
+	xit "only shows github section if user has API key" do
+		stub_repo_api_calls
+		stub_follower_api_calls
+		stub_following_api_calls
+
+		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', role: 0)
+		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', role: 0)
 		normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")
 
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(otherguy)
