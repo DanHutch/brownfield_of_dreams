@@ -28,7 +28,7 @@
           <h1>Your Followers</h1>
             <% @facade.followers.each do |follower| %>
               <div class="follower">
-                <div class="follower-name"><%= link_to follower.name, follower.url%></div>
+                <div class="follower-<%=follower.uid%>"><%= link_to follower.name, follower.url%></div>
               </div>
             <%end%>
         </section>

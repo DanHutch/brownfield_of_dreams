@@ -33,7 +33,7 @@ describe 'User' do
 
 		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', last_name: 'McNorm', role: 0)
 		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', last_name: "McDude", role: 0)
-		normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")
+		normapi = Apikey.create!(uid: 12345, user_id: norm.id, host: 0, key: "token blahblahblahblah")
 
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(otherguy)
 
