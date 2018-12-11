@@ -17,16 +17,16 @@ describe 'User dashboard' do
 
 		expect(page).to have_css(".github")
 		within(".followers") do
-			expect(page).to have_link("Add as Friend", count: 1)
+			expect(page).to have_button("Add as Friend", count: 1)
 		end
 		within(".follower-#{norm_key.uid}") do
-			expect(page).to have_link("Add as Friend")
+			expect(page).to have_button("Add as Friend")
 		end
 		within(".followings") do
-			expect(page).to have_link("Add as Friend", count: 1)
+			expect(page).to have_button("Add as Friend", count: 1)
 		end
 		within(".following-#{norm_key.uid}") do
-			expect(page).to have_link("Add as Friend")
+			expect(page).to have_button("Add as Friend")
 		end
 	end
 
@@ -46,17 +46,17 @@ describe 'User dashboard' do
 
 		expect(page).to have_css(".github")
 		within(".follower-#{norm_key.uid}") do
-			expect(page).to have_link("Add as Friend")
+			expect(page).to have_button("Add as Friend")
 			click_on("Add as Friend")
 		end
 
 		expect(current_path).to eq(dashboard_path)
 
 		within(".follower-#{norm_key.uid}") do
-			expect(page).to_not have_link("Add as Friend")
+			expect(page).to_not have_button("Add as Friend")
 		end
 		within(".friends") do
-			expect(page).to have_css(".friend", count: 1)			
+			expect(page).to have_css(".friend", count: 1)
 		end
 	end
 

@@ -10,7 +10,7 @@
   <section>
     <h1>Bookmarked Segments</h1>
   </section>
-  
+
   <section>
     <% if @facade.friends.length > 0 %>
       <div class="friends">
@@ -21,7 +21,7 @@
           </div>
         <%end%>
       </div>
-    <%end%> 
+    <%end%>
   </section>
 
   <%if @facade.github_key != nil %>
@@ -46,7 +46,7 @@
                 <div class="follower-<%=follower.uid%>">
                   <%= link_to follower.name, follower.url%>
                   <% if @facade.show_friend_link?(follower)%>
-                    <%= link_to "Add as Friend", "/users/#{@facade.user_id}/add_friend/#{follower.uid}", method: "post"%>
+                    <%= button_to "Add as Friend", "/users/#{@facade.user_id}/add_friend/#{follower.uid}"%>
                   <%end%>
                 </div>
               </div>
@@ -61,7 +61,7 @@
                 <div class="following-<%=following.uid%>">
                   <%= link_to following.name, following.url%>
                   <% if @facade.show_friend_link?(following)%>
-                    <%= link_to "Add as Friend", "/users/#{@facade.user_id}/add_friend/#{following.uid}", method: "post"%>
+                    <%= button_to "Add as Friend", "/users/#{@facade.user_id}/add_friend/#{following.uid}"%>
                   <%end%>
                 </div>
               </div>
