@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
+  post '/users/:id/add_friend/:friend_id', to: "friendship#create", as: "add_friend" 
   resources :users, only: [:new, :create, :update, :edit]
 
   resources :tutorials, only: [:show, :index] do
