@@ -2,7 +2,7 @@ class ApikeysController < ApplicationController
 
 	def create
 		data = request.env["omniauth.auth"]
-		Apikey.create(host: data["provider"].to_sym, user_id: current_user.id, uid: data["uid"].to_i, key: data["credentials"]["token"])
+		Apikey.create(host: data["provider"].to_sym, user_id: current_user.id, uid: data["uid"], key: data["credentials"]["token"])
 		redirect_to dashboard_path
 	end
 
