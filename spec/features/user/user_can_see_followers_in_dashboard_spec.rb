@@ -34,7 +34,6 @@ describe 'Github section' do
 		expect(page).to have_css(".following", count: 5)
 
 		within(".followings") do
-			save_and_open_page
 			expect(page).to have_css(".following", count:5)
 			expect(page).to have_link(count: 5)
 		end
