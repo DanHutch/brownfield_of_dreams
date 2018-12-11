@@ -12,11 +12,11 @@ describe 'Github section' do
 		visit dashboard_path
 
 		expect(page).to have_content("Followers")
-		expect(page).to have_css(".follower", count: 15)
+		expect(page).to have_css(".follower", count: 16)
 
 		within(".followers") do
-			expect(page).to have_css(".follower-name", count:15)
-			expect(page).to have_link(count: 15)
+			expect(page).to have_css(".follower", count:16)
+			expect(page).to have_link(count: 16)
 		end
 	end
 
@@ -31,11 +31,12 @@ describe 'Github section' do
 		visit dashboard_path
 
 		expect(page).to have_content("Following")
-		expect(page).to have_css(".following", count: 6)
+		expect(page).to have_css(".following", count: 5)
 
 		within(".followings") do
-			expect(page).to have_css(".following-name", count:6)
-			expect(page).to have_link(count: 6)
+			save_and_open_page
+			expect(page).to have_css(".following", count:5)
+			expect(page).to have_link(count: 5)
 		end
 	end
 
@@ -46,7 +47,7 @@ describe 'Github section' do
 
 		norm = User.create(email: 'norm@email.com', password: 'norm', first_name:'Norm', last_name: "McNorm", role: 0)
 		otherguy = User.create(email: 'dude@email.com', password: 'dude', first_name:'dude', last_name: "McDude", role: 0)
-		normapi = Apikey.create!(user_id: norm.id, host: 0, key: "token blahblahblahblah")
+		normapi = Apikey.create!(uid: 12345, user_id: norm.id, host: 0, key: "token blahblahblahblah")
 
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(otherguy)
 
@@ -55,5 +56,4 @@ describe 'Github section' do
 
 		expect(page).to_not have_css(".github")
 	end
-
 end

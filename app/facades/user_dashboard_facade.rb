@@ -6,8 +6,16 @@ class UserDashboardFacade
 		@_follower_results = nil
 	end
 
+	def friends
+		@user.friends
+	end
+
 	def github_key
 		@user.github_key
+	end
+
+	def user_id
+		@user.id
 	end
 
 	def user_firstname
@@ -44,6 +52,12 @@ class UserDashboardFacade
 				GithubUser.new(following_data)
 			end
 		end
+	end
+
+	def show_friend_link?(github_user)
+		friend_key = Apikey.find_by(uid: github_user.uid)
+		user_friend =	@user.friendships.find_by(friend_id: friend_key.user_id) if friend_key
+		friend_key && !user_friend
 	end
 
 	private
