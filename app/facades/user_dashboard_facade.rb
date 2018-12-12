@@ -30,6 +30,10 @@ class UserDashboardFacade
 		@user.email
 	end
 
+	def my_bookmarks
+		@user.bookmarks
+	end
+
 	def repos
 		if @user.github_key != nil
 			repo_results[0..4].map do |repo_data|
