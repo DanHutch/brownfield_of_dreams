@@ -21,4 +21,8 @@ class User < ApplicationRecord
       User.find(friendship.friend_id)
     end
   end
+
+  def bookmarks
+    self.videos.joins(:tutorial).select('videos.title, videos.position, tutorials.title AS tutorial_title').order('tutorial_title, position')  
+  end
 end

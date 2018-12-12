@@ -8,9 +8,15 @@
     <li> <%= @facade.user_email%> </li>
   </ul>
   <section>
-    <h1>Bookmarked Segments</h1>
+    <div class="bookmarks">
+      <h1>Bookmarked Segments</h1>
+      <% @facade.my_bookmarks.each do |bookmark| %>
+        <div class="bookmark-#{bookmark.id}">
+          <%= bookmark.title %>, Tutorial: <%= bookmark.tutorial_title %>
+        </div>
+      <% end %>
+    </div>
   </section>
-
   <section>
     <% if @facade.friends.length > 0 %>
       <div class="friends">
