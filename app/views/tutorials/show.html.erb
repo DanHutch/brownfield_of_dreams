@@ -1,6 +1,6 @@
 <main class="tutorials">
-<h2><%= @facade.title %></h2>
-<% if @facade.videos != nil %>
+<% if @facade.videos.any? %>
+  <h2><%= @facade.title %></h2>
   <h1 id="message"></h1>
   <div class="col col-4">
     <h4>Videos</h4>

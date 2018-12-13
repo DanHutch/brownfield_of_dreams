@@ -1,0 +1,6 @@
+<h1>Invite Page</h1>
+
+<%= form_tag(create_invite_path, :method => "get") do %>
+  <%= text_field_tag(:g, "Github Handle") %>
+  <%= submit_tag("Send Invite") %>
+<% end %>
