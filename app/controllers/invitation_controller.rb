@@ -8,8 +8,8 @@ class InvitationController < ApplicationController
     self_github_name = github_self_lookup[:name]
     invitee_lookup = github_user_lookup(handle_in)
     invitee = {:email => invitee_lookup[:email], :name => invitee_lookup[:name]}
-    if invitee_email != nil
-      InvitationMailer.invite(invitee, self_github_name).deliver_now
+    if invitee[:email] != nil
+      InvitorMailer.invite(invitee, self_github_name).deliver_now
       flash[:notice] = "Successfully sent invite!"
       redirect_to dashboard_path
     else
