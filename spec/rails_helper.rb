@@ -52,6 +52,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 end
 
+def stub_self_lookup_calls
+  stub_request(:get, "https://api.github.com/user").
+      to_return(body: File.read("./spec/fixtures/sample_self_lookup_response.json"))
+end
+
 def stub_user_lookup_calls(handle)
   stub_request(:get, "https://api.github.com/users/#{handle}").
       to_return(body: File.read("./spec/fixtures/sample_user_lookup_response.json"))

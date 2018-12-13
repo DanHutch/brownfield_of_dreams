@@ -5,23 +5,27 @@ class InvitationController < ApplicationController
 
   def create
     handle_in = params[:g]
-    parsed_in = github_user_lookup(handle_in)
-    require "pry"; binding.pry
-    # x = 1
-    # if x == x
-    #   InvitationMailer.invite(github_handle).deliver_now
-    #   flash[:notice] = "Successfully sent invite!"
-    #   redirect_to dashboard_path
-    # else
-    #   flash[:error] = "The Github user you selected doesn't have an email address associated with their account."
-    #   render :new
-    # end
+    self_github_name = github_self_lookup[:name]
+    invitee_lookup = github_user_lookup(handle_in)
+    invitee = {:email => invitee_lookup[:email], :name => invitee_lookup[:name]}
+    if invitee_email != nil
+      InvitationMailer.invite(invitee, self_github_name).deliver_now
+      flash[:notice] = "Successfully sent invite!"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "The Github user you selected doesn't have a public email address."
+      redirect_to dashboard_path
+    end
   end
 
 private
 
   def github_user_lookup(handle)
     service.lookup_github_user(handle)
+  end
+
+  def github_self_lookup
+    service.get_self_github
   end
 
   def service
