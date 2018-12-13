@@ -1,5 +1,5 @@
 <main class="tutorials">
-<% if @facade.videos.count != 0 %>
+<% if @facade.videos.any? %>
   <h2><%= @facade.title %></h2>
   <h1 id="message"></h1>
   <div class="col col-4">

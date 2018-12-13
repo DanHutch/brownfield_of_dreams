@@ -35,6 +35,8 @@ describe 'A user' do
     visit "/tutorials/#{@tutorial_3.id}"
 
     expect(page).to have_content("No videos yet.")
+    expect(page).to_not have_content(@tutorial_1.title)
+    expect(page).to_not have_content(@tutorial_2.title)
   end
 
 end
