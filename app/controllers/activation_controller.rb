@@ -5,7 +5,7 @@ class ActivationController < ApplicationController
 		user.update(activated: true)
 		if user.save 
 			flash[:message] = "Thank you! Your account is now activated."
-		redirect_to dashboard_path
+		redirect_to root_url
 		end
 	end
 
