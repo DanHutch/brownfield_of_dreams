@@ -4,6 +4,7 @@ describe 'A user' do
   before(:each) do
     @tutorial_1 = create(:tutorial, title: "How to Tie Your Shoes")
     @tutorial_2 = create(:tutorial, title: "How to Find Your Elbow", classroom: true)
+    @tutorial_3 = create(:tutorial, title: "How to Scratch Your Ear")
     @video_1 = create(:video, title: "The Bunny Ears Technique", tutorial_id: @tutorial_1.id, position: 0)
     @video_2 = create(:video, title: "The Elastic Laces Technique", tutorial_id: @tutorial_1.id, position: 1)
     @video_3 = create(:video, title: "The Left Hand Technique", tutorial_id: @tutorial_2.id, position: 1)
@@ -27,6 +28,13 @@ describe 'A user' do
 
     expect(page).to have_content(@tutorial_1.title)
     expect(page).to_not have_content(@tutorial_2.title)
+  end
+
+  it 'sees a message when a tutorial does not have videos yet' do
+
+    visit "/tutorials/#{@tutorial_3.id}"
+
+    expect(page).to have_content("No videos yet.")
   end
 
 end

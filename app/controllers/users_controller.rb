@@ -8,12 +8,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    if user.save
-      session[:user_id] = user.id
-      flash[:message] = "Logged in as #{user.first_name}"
-      ActivatorMailer.activate(user).deliver_now
-      flash[:notice] = "Activation email sent to #{user.email}."
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:message] = "Logged in as #{@user.first_name}"
+      ActivatorMailer.activate(@user).deliver_now
+      flash[:notice] = "Activation email sent to #{@user.email}."
       redirect_to dashboard_path
     else
       flash[:error] = 'Username already exists'

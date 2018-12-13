@@ -16,7 +16,16 @@ class GithubService
 		get_json("/user/following")
 	end
 
+	def lookup_github_user(handle)
+	  get_user_json(handle)
+	end
+
 	private
+
+	def get_user_json(handle)
+		response = Faraday.get("https://api.github.com/users/#{handle}")
+		JSON.parse(response.body, symbolize_names: true)
+	end
 
 	def get_json(url)
 		response = conn.get(url)

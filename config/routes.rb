@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/activate', to: "activation#update", as: "activate"
+  get '/invite', to: "invitation#new", as: "invite"
+  get '/create_invite', to: "invitation#create", as: "create_invite"
 
   get 'auth/:provider/callback', to: 'apikeys#create'
   get 'auth/failure', to: redirect('/')
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
-  post '/users/:id/add_friend/:friend_id', to: "friendship#create", as: "add_friend" 
+  post '/users/:id/add_friend/:friend_id', to: "friendship#create", as: "add_friend"
   resources :users, only: [:new, :create, :update, :edit]
 
   resources :tutorials, only: [:show, :index] do
