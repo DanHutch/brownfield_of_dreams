@@ -43,7 +43,7 @@ describe 'New user activation email' do
 		fill_in 'user[password_confirmation]', with: password
 		click_on 'Create Account'
 
-		visit activate_path(:user_id => 1)
+		visit activate_path(:user_id => User.last.id)
 		expect(current_path).to eq(dashboard_path)
 	
 		expect(page).to have_content("Thank you! Your account is now activated.")
