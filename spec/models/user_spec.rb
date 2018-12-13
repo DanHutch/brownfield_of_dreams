@@ -21,6 +21,7 @@ RSpec.describe User, type: :model do
 
       expect(user.role).to eq('default')
       expect(user.default?).to be_truthy
+      expect(user.activated?).to be_falsey
     end
 
     it 'can be created as an Admin user' do

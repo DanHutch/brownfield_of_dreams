@@ -14,6 +14,10 @@ class UserDashboardFacade
 		@user.github_key
 	end
 
+	def user_activated?
+		@user.activated?
+	end
+
 	def user_id
 		@user.id
 	end

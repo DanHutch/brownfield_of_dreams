@@ -1,5 +1,11 @@
 <section class="dashboard-main">
   <h1> <%= @facade.user_firstname %>'s Dashboard </h1>
+  <% if @facade.user_activated? %>
+    <h4>Status: Active</h4>
+  <%else%>
+    <h2>This account has not yet been activated. Please check your email.</h2>
+  <%end%>
+
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <h3>Account Details</h3>
